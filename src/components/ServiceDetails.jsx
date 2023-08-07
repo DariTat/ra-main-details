@@ -8,11 +8,9 @@ import { skillRequest } from "../actions/actionCreators";
 export default function ServiceDetails(){
     const { item, loading, error } = useSelector(state => state.skill);
     const dispatch = useDispatch();
+    
     const { id } = useParams();
     window.localStorage.setItem('id', id);
-    console.log(item)
-    console.log(id)
-
     useEffect(() => {
         dispatch(skillRequest());
     }, [id])
@@ -20,13 +18,17 @@ export default function ServiceDetails(){
     return(
         <>
             { loading ? <Loading/> :
-             error ? <Error id={id}/> :
+              error ? <Error id={id}/> :
              (
-                <ul className="item_details">
-                    <li>{item.content}</li>
-                    <li>Стоимость: {item.price}</li>
-                </ul>
-             )}
+                <div>
+                    <p>{item?.name}</p>
+                    <ul className="item_details">
+                        <li>{item?.content}</li>
+                        <li>Стоимость: {item?.price}</li>
+                    </ul>
+                </div>
+             )
+             }
         </>
     )
 }

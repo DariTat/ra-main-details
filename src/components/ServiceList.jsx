@@ -8,7 +8,6 @@ import { skillsRequest } from "../actions/actionCreators";
 export default function ServiceList() {
     const { items, loading, error } = useSelector(state => state.skills);
     const dispatch = useDispatch();
-    console.log(items)
 
     useEffect(() => {
         dispatch(skillsRequest());

@@ -1,10 +1,10 @@
-import { put, spawn, takeEvery, takeLatest, retry } from "redux-saga/effects";
+import { put, spawn, takeLatest } from "redux-saga/effects";
 import { getSkills, getSkill } from "../api";
 import {
     skillsFailure,
     skillsSuccess,
     skillFailure,
-    skillSuccess
+    skillSuccess,
 } from '../actions/actionCreators';
 import { SKILL_REQUEST, SKILLS_REQUEST } from "../actions/actionTypes";
 
@@ -17,18 +17,9 @@ function* handleSkillsSaga() {
     }
 }
 
-function* handleSkillSaga() {
-  
+function* handleSkillSaga(action) {
   try {
-    const retryCount = 3
-    const retryDelay = 1 * 1000
-    const data = yield retry(
-      retryCount,
-      retryDelay,
-      getSkill
-    )
-    c
-    console.log(data)    
+    const data = yield getSkill()   
     yield put(skillSuccess(data))
   } catch (e) {
     yield put(skillFailure(e.message))
@@ -45,5 +36,5 @@ function* watchSkillSaga() {
 
 export default function* saga() {
     yield spawn(watchSkillsSaga)
-    yield spawn(watchSkillSaga)
+    yield spawn(watchSkillSaga)   
 }

@@ -4,7 +4,8 @@ import {
     SKILLS_FAILURE,
     SKILL_REQUEST,
     SKILL_SUCCESS,
-    SKILL_FAILURE
+    SKILL_FAILURE,
+   
 } from './actionTypes'
 
 export function skillsRequest() {
@@ -19,8 +20,8 @@ export function skillsFailure(error) {
     return { type: SKILLS_FAILURE, payload: { error } }
 }
 
-export function skillRequest(id) {
-    return { type: SKILL_REQUEST, payload: { id } }
+export function skillRequest() {
+    return { type: SKILL_REQUEST }
 }
 
 export function skillSuccess(item) {
@@ -30,4 +31,3 @@ export function skillSuccess(item) {
 export function skillFailure(error) {
     return { type: SKILL_FAILURE, payload: { error } }
 }
-

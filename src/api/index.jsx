@@ -11,8 +11,7 @@ export const getSkills = async () => {
 
 export const getSkill = async () => {
     const id = window.localStorage.getItem('id')
-    console.log(id)
-    const response = await fetch(`http://localhost:7070/api/services?${id}`);
+    const response = await fetch(`http://localhost:7070/api/services/${id}`);
     if (!response.ok) {
         throw new Error(response.statusText);
       }
